@@ -16,7 +16,7 @@ bcftools query -f '%CHROM\t%POS0\t%POS\n' your.bcf > for_ancestral.bed
 bcftools annotate -a hal/ancestral_annotation.tsv.gz -c CHROM,POS,AA -h <(echo '##INFO=<ID=AA,Number=1,Type=String,Description="Ancestral allele">') -Ob -o your_cactus_aa.bcf your.bcf
 ```
 
-Please cite both the original HAL paper as well as the paper this tool was developed for.
+Cite the original HAL paper. But I'd appreciate a citation as well for the paper this tool was developed for.
 
 ----
 Glenn Hickey, Benedict Paten, Dent Earl, Daniel Zerbino, and David
