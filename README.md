@@ -11,10 +11,12 @@ Usage
 -----
 ```bash
 bcftools query -f '%CHROM\t%POS0\t%POS\n' your.bcf > for_ancestral.bed
-./hal/bin/halAncestralAllele --progress 10000 /mnt/data/seabirds.hal a9 Anc05 ./for_ancestral.bed ./ancestral_states.tsv
+./hal/bin/halAncestralAllele --progress 10000 /mnt/data/seabirds.hal YourGenome Anc05 ./for_ancestral.bed ./ancestral_states.tsv
 ./hal/convert_to_bcftools_aa.sh ancestral_states.tsv
 bcftools annotate -a hal/ancestral_annotation.tsv.gz -c CHROM,POS,AA -h <(echo '##INFO=<ID=AA,Number=1,Type=String,Description="Ancestral allele">') -Ob -o your_cactus_aa.bcf your.bcf
 ```
+
+Replace Anc05 with the appropriate ancestral sequence you'd like to pull alleles from.
 
 Cite the original HAL paper. But I'd appreciate a citation as well for the paper this tool was developed for.
 
