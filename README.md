@@ -1,5 +1,35 @@
 [![Build Status](https://api.travis-ci.org/ComparativeGenomicsToolkit/hal.svg?branch=master)]
 
+halAncestralAlleles Repo
+=====
+
+Installation
+-----
+Follow normal HAL procedure to compile and install. [Installation](#installation)
+
+Usage
+-----
+```bash
+bcftools query -f '%CHROM\t%POS0\t%POS\n' your.bcf > for_ancestral.bed
+./hal/bin/halAncestralAllele --progress 10000 /mnt/data/seabirds.hal a9 Anc05 ./for_ancestral.bed ./ancestral_states.tsv
+./hal/convert_to_bcftools_aa.sh ancestral_states.tsv
+bcftools annotate -a hal/ancestral_annotation.tsv.gz -c CHROM,POS,AA -h <(echo '##INFO=<ID=AA,Number=1,Type=String,Description="Ancestral allele">') -Ob -o your_cactus_aa.bcf your.bcf
+```
+
+Please cite both the original HAL paper as well as the paper this tool was developed for.
+
+----
+Glenn Hickey, Benedict Paten, Dent Earl, Daniel Zerbino, and David
+Haussler.  HAL: A Hierarchical Format for Storing and Analyzing
+Multiple Genome Alignments. Bioinformatics. 2013. [Advance Online Access](http://bioinformatics.oxfordjournals.org/content/early/2013/03/16/bioinformatics.btt128.abstract)
+
+[Population genomics of yellow-eyed penguins uncovers subspecies divergence and candidate genes linked to respiratory distress syndrome](https://www.biorxiv.org/content/10.1101/2025.10.20.683354v1)
+Joseph Guhlin, Janelle R Wierenga, Jordan Douglas, Puawai Swindells-Wallace, Hoani Langsbury, Trudi Webster, Melanie J. Young, Hendrik Schultz, Jordana Whyte, Bryony Alden, Thor T. Ruru, Leith Thomson, Jason van Zanten, Megan Abbott, Jim Watts, Harry S Taylor, Stuart Hunter, Yolanda van Heezik, Philip J. Seddon, Kerri Morgan, Lisa S. Argilla, Catherine E Grueber, Anna W Santure, Peter K Dearden, Jemma L Geoghegan
+bioRxiv 2025.10.20.683354; doi: https://doi.org/10.1101/2025.10.20.683354
+
+Original HAL Readme
+====
+
 Hierarchical Alignment (HAL) Format API (v2.3)
 =====
 Copyright (C) 2012 - 2014 by Glenn Hickey (hickey@soe.ucsc.edu)
